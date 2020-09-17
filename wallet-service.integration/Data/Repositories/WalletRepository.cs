@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using wallet_service.integration.contract.Models;
 using wallet_service.integration.contract.Repositories;
 using wallet_service.integration.Data.Contexts;
@@ -19,7 +20,9 @@ namespace wallet_service.integration.Data.Repositories
             => _context.Transactions.Add(transaction).Entity.Wallet;
 
         public Wallet GetWalletByReference(string referenceNumber)
-            => _context.Wallets.SingleOrDefault(x => x.ReferenceNumber.Equals(referenceNumber));
+            => _context.Wallets
+            .Include(c => c.Transactions)
+            .SingleOrDefault(x => x.ReferenceNumber.Equals(referenceNumber));
 
         #endregion
 

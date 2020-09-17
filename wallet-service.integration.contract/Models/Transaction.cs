@@ -9,22 +9,21 @@ namespace wallet_service.integration.contract.Models
     {
         public virtual Wallet Wallet { get; set; }
         public long WalletId { get; set; }
-        public TransactionType Type { get; set; }
+        public TransactionType TransactionType { get; set; }
         public decimal Amount { get; set; }
         public string Currency { get; set; }
-        public TransactionTrigger Trigger { get; set; }
-        public DateTime TransactionDate { get; set; }
+        public TransactionTrigger TransactionTrigger { get; set; }
+    }
 
-        public enum TransactionType
-        {
-            None = 0,
-            Debit, Credit
-        }
+    public enum TransactionType
+    {
+        None = 0,
+        Debit, Credit
+    }
 
-        public enum TransactionTrigger
-        {
-            None = 0,
-            Bank, Wallet
-        }
+    public enum TransactionTrigger
+    {
+        None = 0,
+        Bank, Wallet
     }
 }

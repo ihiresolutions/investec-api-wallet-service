@@ -24,13 +24,25 @@ namespace wallet_service.api.Controllers
         public ActionResult<WalletDto> Get(string referenceNumber)
         {
             var wallet = _walletRepository.GetWalletByReference(referenceNumber);
-            Console.WriteLine("Wallet SystemRefId: {0}", wallet.SystemRefId);
-            return Ok(new WalletDto
+            if (wallet == null)
             {
-                ReferenceNumber = referenceNumber,
-                Currency = "ZAR",
-                Balance = 5000.00M
-            });
+                return NotFound();
+            }
+            else
+            {
+                return Ok(new WalletDto
+                {
+                    ReferenceNumber = wallet.ReferenceNumber,
+                    Currency = "ZAR",
+                    Balance = wallet.Balance
+                });
+            }
+            //return Ok(new WalletDto
+            //{
+            //    ReferenceNumber = referenceNumber,
+            //    Currency = "ZAR",
+            //    Balance = 5000.00M
+            //});
         }
 
         #region Fields

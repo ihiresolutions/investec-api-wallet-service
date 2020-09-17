@@ -20,7 +20,9 @@ namespace wallet_service.integration.Data.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Wallet>().ToTable("wallets");
-            modelBuilder.Entity<Transaction>().ToTable("transactions");
+            modelBuilder.Entity<Transaction>().ToTable("transactions")
+                .HasOne(p => p.Wallet)
+                .WithMany(p => p.Transactions);
         }
 
         #region Properties
