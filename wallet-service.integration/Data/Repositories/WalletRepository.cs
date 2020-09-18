@@ -17,7 +17,11 @@ namespace wallet_service.integration.Data.Repositories
 
         #region IWalletRepository Implementation
         public Wallet AddWalletTransaction(Transaction transaction)
-            => _context.Transactions.Add(transaction).Entity.Wallet;
+        {
+            var wallet = _context.Transactions.Add(transaction).Entity.Wallet;
+            _context.SaveChanges();
+            return wallet;
+        }
 
         public Wallet GetWalletByReference(string referenceNumber)
             => _context.Wallets

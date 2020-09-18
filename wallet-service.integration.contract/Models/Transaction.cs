@@ -13,6 +13,22 @@ namespace wallet_service.integration.contract.Models
         public decimal Amount { get; set; }
         public string Currency { get; set; }
         public TransactionTrigger TransactionTrigger { get; set; }
+
+        public static Transaction New(Wallet wallet, TransactionType transactionType, decimal amount,
+            string currency, TransactionTrigger transactionTrigger, DateTime transactionDate)
+        {
+            return new Transaction
+            {
+                Wallet = wallet,
+                WalletId = wallet.Id,
+                TransactionType = transactionType,
+                Amount = amount,
+                Currency = currency,
+                TransactionTrigger = transactionTrigger,
+                CreationDate = transactionDate,
+                SystemRefId = Guid.NewGuid()
+            };
+        }
     }
 
     public enum TransactionType

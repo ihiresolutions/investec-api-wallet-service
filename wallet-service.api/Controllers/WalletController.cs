@@ -37,12 +37,6 @@ namespace wallet_service.api.Controllers
                     Balance = wallet.Balance
                 });
             }
-            //return Ok(new WalletDto
-            //{
-            //    ReferenceNumber = referenceNumber,
-            //    Currency = "ZAR",
-            //    Balance = 5000.00M
-            //});
         }
 
         #region Fields
